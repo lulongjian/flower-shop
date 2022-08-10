@@ -1,0 +1,65 @@
+package com.example.admin.controller;
+
+import com.example.admin.service.AdminOrderService;
+import com.example.common.utils.JsonModel;
+import com.example.mall.domain.form.OrderForm;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/admin/order")
+public class adminOrderController {
+
+    @Autowired
+    private AdminOrderService adminOrderService;
+
+    /**
+     * 查询订单列表
+     *
+     * @return
+     */
+    @RequestMapping(value = "getOrderList", method = RequestMethod.POST)
+    public JsonModel getOrderList(Integer page, Integer number, OrderForm orderForm) {
+        JsonModel jsonModel = new JsonModel();
+        try {
+            jsonModel = adminOrderService.getOrderList(page, number, orderForm);
+            jsonModel.setMsg("加载成功");
+        } catch (Exception e) {
+            jsonModel.setCode(500);
+            jsonModel.setMsg("网络错误！请刷新重试");
+        }
+        return jsonModel;
+    }
+
+    /**
+     * 更新订单状态
+     *
+     * @return
+     */
+    @RequestMapping(value = "updateOrderStaus", method = RequestMethod.POST)
+    public JsonModel updateOrderStaus(OrderForm orderForm) {
+        JsonModel jsonModel = new JsonModel();
+        try {
+            adminOrderService.updateOrderStaus(orderForm);
+            jsonModel.setMsg("更新成功");
+        } catch (Exception e) {
+            jsonModel.setCode(500);
+            jsonModel.setMsg("网络错误！请刷新重试");
+        }
+        return jsonModel;
+    }
+
+
+    /**
+     * 订单详情
+     *
+     * @param orderForm
+     * @return
+     */
+    @RequestMapping(value = "getOrderDetails", method = RequestMethod.POST)
+    public JsonModel getOrderDetails(OrderForm orderForm) {
+        return adminOrderService.getOrderDetails(orderForm);
+    }
+}

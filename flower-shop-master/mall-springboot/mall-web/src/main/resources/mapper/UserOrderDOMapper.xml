@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mall.dao.UserOrderDOMapper">
+    <resultMap id="BaseResultMap" type="com.example.mall.domain.UserOrderDO">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="order_no" jdbcType="VARCHAR" property="orderNo"/>
+        <result column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="price" jdbcType="DECIMAL" property="price"/>
+        <result column="addr_des" jdbcType="VARCHAR" property="addrDes"/>
+        <result column="addr_name" jdbcType="VARCHAR" property="addrName"/>
+        <result column="addr_phone" jdbcType="VARCHAR" property="addrPhone"/>
+        <result column="account_record_id" jdbcType="INTEGER" property="accountRecordId"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+
+    <resultMap id="VOResultMap" type="com.example.mall.domain.vo.OrderVO">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="order_no" jdbcType="VARCHAR" property="orderNo"/>
+        <result column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="price" jdbcType="DECIMAL" property="price"/>
+        <result column="addr_des" jdbcType="VARCHAR" property="addrDes"/>
+        <result column="addr_name" jdbcType="VARCHAR" property="addrName"/>
+        <result column="addr_phone" jdbcType="VARCHAR" property="addrPhone"/>
+        <result column="account_record_id" jdbcType="INTEGER" property="accountRecordId"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+
+    </resultMap>
+
+
+    <select id="getOrderList" parameterType="com.example.mall.domain.form.OrderForm" resultMap="VOResultMap">
+        SELECT
+        uo.*,
+        su.name as userName
+        FROM
+        user_order uo, sys_user su
+        where su.id = uo.user_id
+        <if test="userId != null">
+            and uo.user_id = #{userId}
+        </if>
+        <if test="status != null">
+            and uo.status = #{status}
+        </if>
+        <if test="orderNo != null and orderNo != ''">
+            and uo.order_no = like "%"#{orderNo}"%"
+        </if>
+        ORDER BY uo.create_time desc
+    </select>
+
+
+    <select id="getOrder" parameterType="com.example.mall.domain.form.OrderForm" resultMap="VOResultMap">
+        SELECT
+        uo.*,
+        su.name as userName
+        FROM
+        user_order uo, sys_user su
+        where su.id = uo.user_id
+        and uo.id = #{id}
+        ORDER BY uo.create_time desc
+    </select>
+
+
+    <select id="getOrderNumByCrtDate" parameterType="string" resultType="int">
+        SELECT
+            count(*)
+        FROM
+            user_order uo
+        where date(uo.create_time) = #{date}
+    </select>
+</mapper>
