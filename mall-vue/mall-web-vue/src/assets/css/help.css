@@ -1,0 +1,24 @@
+.help_title {
+  text-align: center;
+  padding-top: 30px;
+  height: 100%;
+}
+
+.help_title>p {
+  color: #0a0909;
+
+}
+
+h1 {
+  color: #0a0909;
+}
+
+.help_center {
+  font-size: 30px;
+  margin-bottom: 15px;
+}
+
+.help {
+  font-size: 30px;
+  margin-bottom: 15px;
+}

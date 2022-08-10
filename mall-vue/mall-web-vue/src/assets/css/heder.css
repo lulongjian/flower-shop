@@ -1,0 +1,160 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-width: 1200px;
+  font-family: Microsoft YaHei;
+}
+
+.px20 {
+  font-size: 20px;
+}
+
+.px18 {
+  font-size: 18px;
+}
+
+.px16 {
+  font-size: 16px;
+  color: #635c5c;
+}
+
+.px14 {
+  font-size: 14px;
+  color: #070707 !important;
+}
+
+.px12 {
+  font-size: 12px;
+}
+
+header {
+  height: 50px;
+  width: 100%;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 5px 25px 0px rgba(221, 221, 221, 1);
+  background-color: #f4a6b3;
+}
+
+nav {
+  height: 100%;
+  width: 1200px;
+  margin: 0 auto;
+  background-color: #f4a6b3;
+}
+
+.imgbox {
+  height: 50px;
+  width: 52px;
+  margin-right: 100px;
+  line-height: 50px;
+}
+
+.top_img {
+  width: 90%;
+  height: 90%;
+  margin: 2px 0px;
+}
+
+.left {
+  float: left;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+header .left ul {
+  display: inline-block;
+}
+
+header .left ul li {
+  display: inline-block;
+  line-height: 50px;
+  width: 100px;
+  text-align: center;
+}
+
+header .right ul li {
+  display: inline-block;
+  line-height: 50px;
+}
+
+.clear:after {
+  /*清除浮动*/
+  content: "";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+.clear::after {
+  /*清除浮动*/
+  content: "";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+/* 清除number */
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.right {
+  float: right;
+}
+
+.nav_active {
+  color: #3c3939;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+main {
+  width: 100%;
+}
+
+.hederimg {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+}
+
+/*avue的表格样式*/
+.avue-crud__right {
+  display: none !important;
+}
+
+.avue-crud__menu {
+  min-height: 0px !important;
+}
+
+.el-tag {
+  position: relative;
+}
+
+.el-tag .rightSpan {
+  position: absolute;
+  right: 10px;
+}
+
+.el-dropdown-link {
+  color: #635c5c !important;
+}
